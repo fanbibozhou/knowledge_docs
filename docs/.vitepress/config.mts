@@ -20,7 +20,7 @@ export default defineConfig({
   lang: 'zh-CN', //语言，可选 en-US
   title: "泛彼泊舟",    //网站标题
   description: "个人知识库",   //网站描述
-  base: "/docs/",    //根目录
+  base: "/knowledge_docs/",    //根目录
   // logo: '/index.png',   //网站logo
   // srcDir: "docs",   //相对目录，用于存放md文件
   //网站头部设置
