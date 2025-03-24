@@ -1,84 +1,109 @@
 <template>
-  <div class="nav-page">
-    <div v-for="group in navGroups" :key="group.title" class="nav-group">
-      <h2 class="group-title">{{ group.title }}</h2>
-      <div class="nav-items">
-        <a 
-          v-for="item in group.items" 
-          :key="item.link"
-          :href="item.link"
-          class="nav-item"
-          @mouseover="hoverItem = item.link"
-          @mouseleave="hoverItem = null"
-        >
-          <span v-if="item.icon" class="icon">{{ item.icon }}</span>
-          <div class="content">
-            <div class="text">{{ item.text }}</div>
-            <div v-if="item.desc" class="desc">{{ item.desc }}</div>
-          </div>
-        </a>
+  <div class="nav-container">
+    <!-- 左侧主内容 -->
+    <div class="nav-content">
+      <div 
+        v-for="group in navGroups" 
+        :key="group.id"
+        :id="group.id"
+        class="nav-group"
+      >
+        <h2 class="group-title">{{ group.title }}</h2>
+        <div class="nav-items">...</div>
       </div>
+    </div>
+
+    <!-- 右侧锚点导航 -->
+    <div class="nav-anchor">
+      <div class="anchor-title">分类导航</div>
+      <a 
+        v-for="group in navGroups"
+        :key="group.id"
+        :href="`#${group.id}`"
+        class="anchor-link"
+        :class="{ active: activeAnchor === group.id }"
+      >
+        {{ group.title }}
+      </a>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { navGroups } from './navData'
 
-const hoverItem = ref<string | null>(null)
+const activeAnchor = ref('')
+
+// 监听滚动并高亮对应锚点
+onMounted(() => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          activeAnchor.value = entry.target.id
+        }
+      })
+    },
+    { threshold: 0.5 } // 50%可见时触发
+  )
+
+  navGroups.forEach(group => {
+    const el = document.getElementById(group.id)
+    if (el) observer.observe(el)
+  })
+
+  // 清理
+  onUnmounted(() => observer.disconnect())
+})
 </script>
 
 <style scoped>
-.nav-page {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
-}
-
-.nav-group {
-  margin-bottom: 2rem;
-}
-
-.group-title {
-  font-size: 1.5rem;
-  color: var(--vp-c-brand);
-  border-bottom: 2px solid var(--vp-c-divider);
-  padding-bottom: 0.5rem;
-}
-
-.nav-items {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.nav-item {
+.nav-container {
   display: flex;
-  padding: 1rem;
-  border-radius: 8px;
-  background: var(--vp-c-bg-soft);
-  transition: transform 0.2s, box-shadow 0.2s;
+  max-width: 1440px;
+  margin: 0 auto;
+  gap: 32px;
 }
 
-.nav-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-.icon {
-  font-size: 24px;
-  margin-right: 1rem;
-}
-
-.content {
+.nav-content {
   flex: 1;
 }
 
-.desc {
-  font-size: 0.9rem;
+.nav-anchor {
+  position: sticky;
+  top: 80px;
+  width: 200px;
+  height: fit-content;
+  padding: 16px;
+  border-radius: 8px;
+  background: var(--vp-c-bg-soft);
+}
+
+.anchor-title {
+  font-weight: 600;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+
+.anchor-link {
+  display: block;
+  padding: 8px 12px;
+  margin-bottom: 4px;
+  border-radius: 4px;
   color: var(--vp-c-text-2);
-  margin-top: 0.5rem;
+  transition: all 0.3s;
+}
+
+.anchor-link:hover {
+  color: var(--vp-c-brand);
+  background: var(--vp-c-bg-soft-up);
+}
+
+.anchor-link.active {
+  color: var(--vp-c-brand);
+  background: var(--vp-c-brand-light);
+  color: white;
 }
 </style>
