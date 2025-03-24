@@ -12,11 +12,6 @@ export interface NavItem {
     items: NavItem[];
   }
   
-  export interface NavGroup {
-    title: string;
-    items: NavItem[];
-  }
-  
   export const navGroups: NavGroup[] = [
     {
       title: "常用工具",

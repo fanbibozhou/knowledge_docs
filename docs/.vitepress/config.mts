@@ -16,7 +16,12 @@ export default defineConfig({
       // light: 'github-dark',
     }
   },
-
+  
+  vite: {
+    ssr: {
+      noExternal: ['vue']
+    }
+  },
   lang: 'zh-CN', //语言，可选 en-US
   title: "泛彼泊舟",    //网站标题
   description: "个人知识库",   //网站描述
