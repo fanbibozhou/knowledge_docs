@@ -2,8 +2,8 @@ import {DefaultTheme } from 'vitepress';
 export const nav: DefaultTheme.NavItem[] = [
   {
    
-    text: '首页',
-    link: '/' // 表示docs/index.md
+    text: '导航',
+    link: '/nav/' // 表示docs/index.md
   },
   {
    
