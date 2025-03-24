@@ -16,10 +16,10 @@ export default defineConfig({
       // light: 'github-dark',
     }
   },
-  
+
   vite: {
     ssr: {
-      noExternal: ['vue']
+      noExternal: ['vue', 'vitepress']
     }
   },
   lang: 'zh-CN', //语言，可选 en-US
