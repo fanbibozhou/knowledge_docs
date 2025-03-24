@@ -1,12 +1,11 @@
+// .vitepress/theme/index.ts
 import DefaultTheme from 'vitepress/theme'
 import Nav from './Nav.vue'
-import { navGroups } from './navData'
+import './custom.css' // 确保样式文件导入
 
 export default {
   extends: DefaultTheme,
   enhanceApp({ app }) {
-    app.component('NavPage', Nav)
-    // 注入全局数据（可选）
-    app.provide('navGroups', navGroups)
+    app.component('NavPage', Nav) // 确保组件已注册
   }
 }

@@ -4,11 +4,11 @@ export interface NavItem {
     text: string;
     link: string;
     desc?: string;
-    icon?: string;
+    icon?: string;  // 支持 Emoji、图片URL、图标类名
   }
   export interface NavGroup {
     title: string;
-    id: string; // 新增锚点ID字段
+    id: string; // // 必须唯一，用于锚点
     items: NavItem[];
   }
   
