@@ -1,7 +1,6 @@
 import { defineConfig } from 'vitepress'
-import { nav } from './conf/navbar.mts';
-import { generateSidebar  }  from './conf/sidebar.js'
-// import AutoSidebar from 'vite-plugin-vitepress-auto-sidebar'
+import { nav } from './conf/navbar.mjs';
+import { generateSidebar  }  from './conf/sidebar'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -17,11 +16,11 @@ export default defineConfig({
     }
   },
 
-  vite: {
-    ssr: {
-      noExternal: ['vue', 'vitepress']
-    }
-  },
+  // vite: {
+  //   ssr: {
+  //     noExternal: ['vue', 'vitepress']
+  //   }
+  // },
   lang: 'zh-CN', //语言，可选 en-US
   title: "泛彼泊舟",    //网站标题
   description: "个人知识库",   //网站描述
