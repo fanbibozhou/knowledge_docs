@@ -25,6 +25,7 @@ export const nav: DefaultTheme.NavItem[] = [
       {
         text: '自动化',
         items: [
+        {text: 'pytest',link: '/Test/auto/pytest/'},
         {text: '接口测试及自动化',link: '/Test/auto/interface/'}, // 表示docs/Test/auto/interface/index.md
         {text: 'web自动化',link: '/Test/auto/web/'}, // 表示docs/Test/auto/web/index.md
         {text: 'app自动化',link: '/Test/auto/app/'} // 表示docs/Test/auto/app/index.md
@@ -109,8 +110,8 @@ export const nav: DefaultTheme.NavItem[] = [
     text: '关于',
     items: [
       {text: 'Github', link: 'https://github.com/Jacqueline712' },
-      {text: '掘金',link: 'https://juejin.cn/user/3131845139247960/posts'},
-      {text: '飞书社区',link: 'https://pzfqk98jn1.feishu.cn/wiki/space/7193915595975491587?ccm_open_type=lark_wiki_spaceLink'}
+      // {text: '掘金',link: 'https://juejin.cn/user/3131845139247960/posts'},
+      // {text: '飞书社区',link: 'https://pzfqk98jn1.feishu.cn/wiki/space/7193915595975491587?ccm_open_type=lark_wiki_spaceLink'}
     ]
   }
 ];

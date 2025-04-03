@@ -1,5 +1,5 @@
 import { defineConfig } from 'vitepress'
-import { nav } from './conf/navbar.mjs';
+import { nav } from './conf/navbar.mts';
 import { generateSidebar  }  from './conf/sidebar'
 // import AutoSidebar from 'vite-plugin-vitepress-auto-sidebar'
 
