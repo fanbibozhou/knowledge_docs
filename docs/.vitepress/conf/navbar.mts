@@ -75,33 +75,33 @@ export const nav: DefaultTheme.NavItem[] = [
     items: [
       {text: 'docker',link: '/DevOps/docker/'},
       {text: 'kubernetes',link: '/DevOps/kubernetes/'},
+      {text: 'ansible',link: '/DevOps/ansible/'},
       {text: 'jenkins',link: '/DevOps/jenkins/'},
       {text: 'git',link: '/DevOps/git/'},
-      {text: 'shell',link: '/DevOps/shell/'},
+
     ]
   },
-  {
-    text: '中间件技术',
-    items: [
-      {text: 'Maven',link: '/middle/maven/'},
-      {text: 'Tomcat',link: '/middle/tomcat/'},
-      {text: 'Nginx',link: '/middle/nginx/'},
-      {text: 'ZooKeeper',link: '/middle/zooKeeper/'},
-      {text: 'RabbitMQ',link: '/middle/rabbitmq/'},
-      {text: 'Nacos',link: '/middle/nacos/'},
-      {text: 'Elasticsearch',link: '/middle/elasticsearch/'},
-    ]
-      
-  },
+  // {
+  //   text: '中间件技术',
+  //   items: [
+  //     {text: 'Maven',link: '/middle/maven/'},
+  //     {text: 'Tomcat',link: '/middle/tomcat/'},
+  //     {text: 'Nginx',link: '/middle/nginx/'},
+  //     {text: 'ZooKeeper',link: '/middle/zooKeeper/'},
+  //     {text: 'RabbitMQ',link: '/middle/rabbitmq/'},
+  //     {text: 'Nacos',link: '/middle/nacos/'},
+  //     {text: 'Elasticsearch',link: '/middle/elasticsearch/'},
+  //   ]   
+  // },
   {
    
     text: '生活笔记',
     items: [
       {text: '阅读',link: '/life-note/read/'}, // 表示docs/column/Travel/index.md   
-      {text: '所思·所想',link: '/life-note/Growing/'}, // 表示docs/column/Growing/index.md    
+      {text: '随笔',link: '/life-note/essay/'}, // 表示docs/column/Growing/index.md    
       {text: '运动',link: '/life-note/exer/'}, // 表示docs/column/Life/index.md  
       {text: '生活',link: '/life-note/life/'}, // 表示docs/column/Travel/index.md    
-      {text: '杂谈',link: '/life-note/talk/'} // 表示docs/column/Travel/index.md 
+      {text: '其他',link: '/life-note/other/'} // 表示docs/column/Travel/index.md 
       
     ]
   },
