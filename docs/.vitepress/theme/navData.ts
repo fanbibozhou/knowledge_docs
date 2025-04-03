@@ -49,8 +49,11 @@ export interface NavItem {
         title: "AI工具",
         id: "ai",
         items: [
-          { text: "VitePress", link: "https://vitepress.yiov.top/", desc: "vitepress文档教程",icon: "https://vitepress.yiov.top/logo.png" },
-          { text: "Webpack", link: "/tools/webpack" },
+          { text: "DeepSeek", link: "https://chat.deepseek.com/", desc: "可以帮你写代码、读文件、写作各种创意内容",icon: "https://chat.deepseek.com/favicon.svg" },
+          { text: "kimi", link: "https://kimi.moonshot.cn/", desc: "会推理解析，能深度思考的AI助手",icon: "https://statics.moonshot.cn/kimi-chat/favicon.ico" },
+          { text: "豆包", link: "https://www.doubao.com/chat/", desc: "字节跳动推出的免费AI智能助手",icon: "https://lf-flow-web-cdn.doubao.com/obj/flow-doubao/doubao/logo-doubao-overflow.png" },
+          { text: "deepseek官方提示词库", link: "https://api-docs.deepseek.com/zh-cn/prompt-library/", desc: "探索 DeepSeek 提示词样例，挖掘更多可能",icon: "https://cdn.deepseek.com/platform/favicon.png" },
+
         ]
       }
     

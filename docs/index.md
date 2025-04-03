@@ -21,8 +21,8 @@ hero:
       text: 关于我
       link: /api-examples
     - theme: brand
-      text: github地址
-      link: https://18055975947.github.io/extension/
+      text: 导航
+      link: /nav/
       
 
 # 官方文档相关配置：URL_ADDRESS# 官方文档相关配置：https://vitepress.dev/reference/default-theme-home-page
