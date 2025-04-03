@@ -7,7 +7,7 @@
 - **通过ORDER BY 子句，可以将查询除的结果进行排序(排序只是显示效果，不会影响真实数据)**
 - 语法结构
 
-```mysql
+```sql
 SELECT 字段名 FROM 表名 [WHERE 字段 = 值] ORDER BY [ASC/DESC]
 ```
 
@@ -25,7 +25,7 @@ SELECT 字段名 FROM 表名 [WHERE 字段 = 值] ORDER BY [ASC/DESC]
 
 使用salary字段，对emp表进行排序（升序/降序）
 
-```mysql
+```sql
 -- 默认升序排序 ASC
 SELECT * FROM emp ORDER BY salary;
 -- 降序排序
@@ -40,7 +40,7 @@ SELECT * FROM emp ORDER BY salary DESC;
 
 在薪水排序的基础上，在使用id进行排序，如果薪水相同就id做降序排序
 
-```mysql
+```sql
 --组合排序
 SELECT * FROM emp ORDER BY salary DESC, eid DESC;
 ```
@@ -51,7 +51,7 @@ SELECT * FROM emp ORDER BY salary DESC, eid DESC;
 
 - 语法结构
 
-```mysql
+```sql
 SELECT 聚合函数（字段名） FROM 表名;
 ```
 
@@ -67,7 +67,7 @@ SELECT 聚合函数（字段名） FROM 表名;
 
 需求1：
 
-```mysql
+```sql
 #1 查询员工的总数
 #2 查看员工总薪水、最高薪水、最小薪水、薪水的平均值
 #3 查询薪水大于4000员工的个数
@@ -77,7 +77,7 @@ SELECT 聚合函数（字段名） FROM 表名;
 
 SQL实现
 
-```mysql
+```sql
 #1 查询员工的总数
 -- 统计表中的记录条数 使用 count()
 SELECT COUNT(eid) FROM emp; -- 使用某一个字段
@@ -106,13 +106,13 @@ WHERE dept_name = '市场部';
 - **分组查询指的是使用 GROUP BY 语句，对查询的信息进行分组，相同数据作为一组**
 - 语法格式
 
-```mysql
+```sql
 SELECT 分组字段/聚合函数 FROM 表名 GROUP BY 分组字段 [HAVING 条件]
 ```
 
 需求1：通过性别字段 进行分组
 
-```mysql
+```sql
 -- 按照性别进行分组操作
 SELECT * FROM emp GROUP BY sex; -- 注意 这样写没有意义
 ```
@@ -123,14 +123,14 @@ SELECT * FROM emp GROUP BY sex; -- 注意 这样写没有意义
 
 注意：
 
-```mysql
+```sql
 分组时可以查询要分组的字段, 或者使用聚合函数进行统计操作.
 * 查询其他字段没有意义
 ```
 
 需求: 通过性别字段 进行分组,求各组的平均薪资
 
-```mysql
+```sql
 SELECT sex, AVG(salary) FROM emp GROUP BY sex;
 #查询每个部门的平均薪资
 SELECT
@@ -149,7 +149,7 @@ FROM emp GROUP BY dept_name;
 
 SQL实现
 
-```mysql
+```sql
 # 查询平均薪资大于6000的部门
 -- 需要在分组后再次进行过滤,使用 having
 SELECT
@@ -175,7 +175,7 @@ limit关键字的作用
 
 语法结构
 
-```mysql
+```sql
 SELECT 字段1，字段2... FROM 表名 LIMIT offset，length;
 ```
 
@@ -186,14 +186,14 @@ SELECT 字段1，字段2... FROM 表名 LIMIT offset，length;
 
 需求1：
 
-```mysql
+```sql
 # 查询emp表中的前 5条数据
 # 查询emp表中 从第4条开始,查询6条
 ```
 
 SQL实现
 
-```mysql
+```sql
 # 查询emp表中的前 5条数据
 -- 参数1 起始值,默认是0 , 参数2 要查询的条数
 SELECT * FROM emp LIMIT 5;
@@ -207,7 +207,7 @@ SELECT * FROM emp LIMIT 3 , 6;
 
 SQL实现
 
-```mysql
+```sql
 -- 分页操作 每页显示3条数据
 SELECT * FROM emp LIMIT 0,3; -- 第1页
 SELECT * FROM emp LIMIT 3,3; -- 第2页 2-1=1 1*3=3
@@ -242,7 +242,7 @@ SELECT * FROM emp LIMIT 6,3; -- 第三页
 
 语法格式
 
-```mysql
+```sql
 1、字段名 字段类型 primary key
 2、primary key(字段名)
 3、创建的时候不指定主键,然后通过 DDL语句进行设置
@@ -252,7 +252,7 @@ ALTER TABLE emp2 ADD PRIMARY KEY(eid);
 
 DESC查看表结构
 
-```mysql
+```sql
 -- 查看表的详细信息
 DESC emp;
 ```
@@ -265,7 +265,7 @@ DESC emp;
 
 - 删除表中的主键约束（了解）
 
-```mysql
+```sql
 -- 使用DDL语句 删除表中的主键
 ALTER TABLE emp2 DROP PRIMARY KEY;
 DESC emp2;
@@ -275,7 +275,7 @@ DESC emp2;
 
 **注: 主键如果让我们自己添加很有可能重复,我们通常希望在每次插入新记录时,数据库自动生成主键字段 的值.**
 
-```mysql
+```sql
 关键字：
 AUTO_INCREMENT
 ```
@@ -284,7 +284,7 @@ AUTO_INCREMENT
 
 **默认地 AUTO_INCREMENT 的开始值是 1，如果希望修改起始值,请使用下面的方式**
 
-```mysql
+```sql
 -- 创建主键自增的表,自定义自增其实值
 CREATE TABLE emp2(
 eid INT PRIMARY KEY AUTO_INCREMENT,
@@ -308,7 +308,7 @@ sex CHAR(1)
 
 语法格式
 
-```mysql
+```sql
 字段名 字段类型 not null
 ```
 
@@ -318,7 +318,7 @@ sex CHAR(1)
 
 语法格式
 
-```mysql
+```sql
 字段名 字段值 unique
 ```
 
@@ -337,13 +337,13 @@ sex CHAR(1)
 
 语法格式
 
-```mysql
+```sql
 字段名 字段类型 DEFAULT 默认值
 ```
 
 需求：创建emp1表，eid 主键自增约束，ename 非空约束，sex字段默认女
 
-```mysql
+```sql
 -- 创建带有默认值的表
 CREATE TABLE emp4(
 eid INT PRIMARY KEY AUTO_INCREMENT,
@@ -358,7 +358,7 @@ sex CHAR(1) DEFAULT '女'
 
 ​	事务是一个整体,由一条或者多条SQL 语句组成,这些SQL语句要么都执行成功,要么都执行失败, 只要有 一条SQL出现异常,整个操作就会回滚,整个业务执行失败
 
-```mysql
+```sql
 比如: 银行的转账业务,张三给李四转账500元 , 至少要操作两次数据库, 张三 -500, 李四 + 500,这中
 间任何一步出现问题,整个操作就必须全部回滚, 这样才能保证用户和银行都没有损失.
 ```
@@ -404,13 +404,13 @@ sex CHAR(1) DEFAULT '女'
 
 1）登录MySQL，查看autocommit 状态
 
-```mysql
+```sql
 SHOW VARIABLES LIKE 'autocommit';--ON：自动提交；OFF：手动提交
 ```
 
 2）把autocommit 改成 off;
 
-```mysql
+```sql
 SET @@autocommit=off;
 ```
 
@@ -459,13 +459,13 @@ MySQL数据库有四种隔离级别，上面的级别最低，下面的级别最
 
 1）查看隔离级别
 
-```mysql
+```sql
 select @@tx_isolation;
 ```
 
 2）设置事务隔离级别，需要退出MySQL再重新登录才能看到隔离级别的变化
 
-```mysql
+```sql
 set global transaction isolation level 级别名称;
 read uncommitted 读未提交
 read committed 读已提交
@@ -475,7 +475,7 @@ serializable 串行化
 
 例如：修改隔离级别为 读未提交
 
-```mysql
+```sql
 set global transaction isolation level read uncommitted;
 ```
 

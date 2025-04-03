@@ -12,7 +12,7 @@
 
 1）创建一个数据库db3
 
-```mysql
+```sql
 CREATE DATABASE dbs character set utf8;
 ```
 
@@ -21,7 +21,7 @@ CREATE DATABASE dbs character set utf8;
 - 包含如下列 eid,ename,age,dep_name,dep_location
 - eid为主键并自动增长，添加5条数据
 
-```mysql
+```sql
 -- 创建emp表 主键自增
 CREATE TABLE emp(
 eid INT PRIMARY KEY AUTO_INCREMENT,
@@ -32,7 +32,7 @@ dep_location VARCHAR(20)
 );
 ```
 
-```mysql
+```sql
 -- 添加数据
 INSERT INTO emp (ename, age, dep_name, dep_location) VALUES ('张百万', 20, '研发
 部', '广州');
@@ -66,7 +66,7 @@ INSERT INTO emp (ename, age, dep_name, dep_location) VALUES ('大玲子', 18, '�
 
 2. 删除emp，重新创建两张表
 
-```mysql
+```sql
 -- 创建部门表
 -- 一方,主表
 CREATE TABLE department(
@@ -86,7 +86,7 @@ dept_id INT
 
 3.添加部门表 数据
 
-```mysql
+```sql
 -- 添加2个部门
 INSERT INTO department VALUES(NULL, '研发部','广州'),(NULL, '销售部', '深圳');
 SELECT * FROM department;
@@ -94,7 +94,7 @@ SELECT * FROM department;
 
 4.添加员工表数据
 
-```mysql
+```sql
 -- 添加员工,dep_id表示员工所在的部门
 INSERT INTO employee (ename, age, dept_id) VALUES ('张百万', 20, 1);
 INSERT INTO employee (ename, age, dept_id) VALUES ('赵四', 21, 1);
@@ -119,7 +119,7 @@ SELECT * FROM employee;
 
 - 当我们在员工表的dept_id里面输入不存在的部门id，数据依然可以添加，显然这是不合理的
 
-```mysql
+```sql
 -- 插入一条 不存在部门的数据
 INSERT INTO employee (ename,age,dept_id) VALUES('无名',35,3);
 ```
@@ -138,17 +138,17 @@ INSERT INTO employee (ename,age,dept_id) VALUES('无名',35,3);
 
 语法格式：
 
-```mysql
+```sql
 1. 新建表时添加外键
 ```
 
-```mysql
+```sql
 [CONSTRAINT] [外键约束名称] FOREIGN KEY(外键字段名) REFERENCES 主表名(主键字段名)
 ```
 
 ​	2.已有表添加外键
 
-```mysql
+```sql
 ALTER TABLE 从表 ADD [CONSTRAINT] [外键约束名称] FOREIGN KEY (外键字段名) REFERENCES 主表(主 键字段名);
 ```
 
@@ -156,7 +156,7 @@ ALTER TABLE 从表 ADD [CONSTRAINT] [外键约束名称] FOREIGN KEY (外键字�
 
 语法格式
 
-```mysql
+```sql
 alter table 从表 drop foreign key 外键约束名称
 ```
 
@@ -172,12 +172,12 @@ alter table 从表 drop foreign key 外键约束名称
 
 - **如果想实现删除主表数据的同时，也删除掉从表数据，可以使用级联删除操作**
 
-```mysql
+```sql
 级联删除
 ON DELETE CASCADE
 ```
 
-```mysql
+```sql
 -- 重新创建添加级联操作
 CREATE TABLE employee(
 eid INT PRIMARY KEY AUTO_INCREMENT,
@@ -247,14 +247,14 @@ DELETE FROM department WHERE id = 2;
 
 1）创建db3_2数据库
 
-```mysql
+```sql
 -- 创建 db3_2 数据库,指定编码
 CREATE DATABASE db3_2 CHARACTER SET utf8;
 ```
 
 2）创建分类表与商品表
 
-```mysql
+```sql
 #分类表 (一方 主表)
 CREATE TABLE category (
 cid VARCHAR(32) PRIMARY KEY ,
@@ -274,7 +274,7 @@ FOREIGN KEY (category_id) REFERENCES category (cid)
 
 3）插入数据
 
-```mysql
+```sql
 #分类数据
 INSERT INTO category(cid,cname) VALUES('c001','家电');
 INSERT INTO category(cid,cname) VALUES('c002','鞋服');
@@ -307,13 +307,13 @@ INSERT INTO products (pid, pname,price,flag,category_id) VALUES('p009','大
 
 1）语法格式
 
-```mysql
+```sql
 SELECT 字段名 FROM 表1，表2;
 ```
 
 2）使用交叉连接查询商品表和分类表
 
-```mysql
+```sql
 SELECT * FROM cetegory,products;
 ```
 
@@ -336,13 +336,13 @@ SELECT * FROM cetegory,products;
 
 语法格式
 
-```mysql
+```sql
 SELECT 字段名 FROM 左表, 右表 WHERE 连接条件;
 ```
 
 1）查询所有商品信息和对应的分类信息
 
-```mysql
+```sql
 # 隐式内连接
 SELECT * FROM products,category WHERE category_id = cid;
 ```
@@ -351,7 +351,7 @@ SELECT * FROM products,category WHERE category_id = cid;
 
 **可以通过给表起别名的方式，方便我们的查询**
 
-```mysql
+```sql
 SELECT
 p.`pname`,
 p.`price`,
@@ -361,7 +361,7 @@ FROM products p , category c WHERE p.`category_id` = c.`cid`;
 
 3）查询格力空调是属于哪一分类下的商品
 
-```mysql
+```sql
 #查询 格力空调是属于哪一分类下的商品
 SELECT p.`pname`,c.`cname` FROM products p , category c
 WHERE p.`category_id` = c.`cid` AND p.`pid` = 'p002';
@@ -373,21 +373,21 @@ WHERE p.`category_id` = c.`cid` AND p.`pid` = 'p002';
 
 语法格式
 
-```mysql
+```sql
 SELECT 字段名 FROM 左表 [INNER] JOIN 右表 ON 条件
 -- inner 可以省略
 ```
 
 1) 查询所有商品信息和对应的分类信息
 
-```mysql
+```sql
 # 显式内连接查询
 SELECT * FROM products p INNER JOIN category c ON p.category_id = c.cid;
 ```
 
 2）查询鞋服分类下，价格大于500的商品名称和价格
 
-```mysql
+```sql
 # 查询鞋服分类下,价格大于500的商品名称和价格
 -- 我们需要确定的几件事
 -- 1.查询几张表 products & category
@@ -411,11 +411,11 @@ WHERE p.price > 500 AND cname = '鞋服';
 
 1）语法格式
 
-```mysql
+```sql
 SELECT 字段名 FROM 左表 LEFT JOIN 右边 ON 条件
 ```
 
-```mysql
+```sql
 -- 左外连接查询
 SELECT * FROM category c LEFT JOIN products p ON c.`cid`= p.`category_id`;
 ```
@@ -424,7 +424,7 @@ SELECT * FROM category c LEFT JOIN products p ON c.`cid`= p.`category_id`;
 
 2）左外连接，查询每个分类下的商品个数
 
-```mysql
+```sql
 # 查询每个分类下的商品个数
 /*
 1.连接条件: 主表.主键 = 从表.外键
@@ -446,11 +446,11 @@ GROUP BY c.`cname`;
 
 1）语法格式
 
-```mysql
+```sql
 SELECT 字段名 FROM 左表 RIGHT [OUTER ]JOIN 右表 ON 条件
 ```
 
-```mysql
+```sql
 -- 右外连接查询
 SELECT * FROM products p RIGHT JOIN category c ON p.`category_id` = c.`cid`;
 ```
@@ -481,13 +481,13 @@ SELECT * FROM products p RIGHT JOIN category c ON p.`category_id` = c.`cid`;
 
 语法格式
 
-```mysql
+```sql
 SELECT 查询字段 FROM 表 WHERE 字段=（子查询）;
 ```
 
 1、通过子查询的方式，查询价格最高的商品信息
 
-```mysql
+```sql
 # 通过子查询的方式, 查询价格最高的商品信息
 -- 1.先查询出最高价格
 SELECT MAX(price) FROM products;
@@ -497,7 +497,7 @@ SELECT * FROM products WHERE price = (SELECT MAX(price) FROM products);
 
 2、查询化妆品分类下的商品名称和商品价格
 
-```mysql
+```sql
 #查询化妆品分类下的 商品名称 商品价格
 -- 先查出化妆品分类的 id
 SELECT cid FROM category WHERE cname = '化妆品';
@@ -511,7 +511,7 @@ WHERE p.`category_id` = (SELECT cid FROM category WHERE cname = '化妆品');
 
 3、查询小于平均价格的商品信息
 
-```mysql
+```sql
 -- 1.查询平均价格
 SELECT AVG(price) FROM products; -- 1866
 -- 2.查询小于平均价格的商品
@@ -523,13 +523,13 @@ WHERE price < (SELECT AVG(price) FROM products);
 
 语法格式
 
-```mysql
+```sql
 SELECT 查询字段 FROM （子查询）表别名 WHERE 条件;
 ```
 
 1、查询商品中,价格大于500的商品信息,包括 商品名称 商品价格 商品所属分类名称
 
-```mysql
+```sql
 -- 1. 先查询分类表的数据
 SELECT * FROM category;
 -- 2.将上面的查询语句 作为一张表使用
@@ -551,13 +551,13 @@ ON p.`category_id` = c.cid WHERE p.`price` > 500;
 
 语法格式
 
-```mysql
+```sql
 SELECT 查询字段 FROM 表 WHERE 字段 IN （子查询）;
 ```
 
 1、查询价格小于两千的商品，来源于哪些分类（名称）
 
-```mysql
+```sql
 # 查询价格小于两千的商品,来自于哪些分类(名称)
 -- 先查询价格小于2000 的商品的,分类ID
 SELECT DISTINCT category_id FROM products WHERE price < 2000;

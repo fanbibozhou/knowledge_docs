@@ -30,7 +30,7 @@
 
 - 创建表的时候直接添加主键索引（最常用）
 
-```mysql
+```sql
 CREATE TABLE 表名(
 -- 添加主键 (主键是唯一性索引,不能为null,不能重复,)
 字段名 类型 PRIMARY KEY,
@@ -39,7 +39,7 @@ CREATE TABLE 表名(
 
 - 修改表结构 添加主键索引
 
-```mysql
+```sql
 ALTER TABLE 表名 ADD PRIMARY KEY ( 列名 )
 ```
 
@@ -53,7 +53,7 @@ ALTER TABLE 表名 ADD PRIMARY KEY ( 列名 )
 
 - 创建表的时候添加唯一索引
 
-```mysql
+```sql
 CREATE TABLE 表名(
 列名 类型(长度),
 -- 添加唯一索引
@@ -63,13 +63,13 @@ UNIQUE [索引名称] (列名)
 
 - 使用create语句创建：在已有的表上创建索引
 
-```mysql
+```sql
 create unique index 索引名 on 表名(列名(长度))
 ```
 
 - 修改表结构添加索引
 
-```mysql
+```sql
 ALTER TABLE 表名 ADD UNIQUE ( 列名 )
 ```
 
@@ -81,13 +81,13 @@ ALTER TABLE 表名 ADD UNIQUE ( 列名 )
 
 使用create index语句创建：在已有的表上创建索引
 
-```mysql
+```sql
 create index 索引名 on 表名(列名[长度])
 ```
 
 修改表结构添加索引
 
-```mysql
+```sql
 ALTER TABLE 表名 ADD INDEX 索引名 (列名)
 ```
 
@@ -97,7 +97,7 @@ ALTER TABLE 表名 ADD INDEX 索引名 (列名)
 
 语法格式
 
-```mysql
+```sql
 ALTER TABLE 表名 DROP INDEX 索引名;
 ```
 
@@ -135,7 +135,7 @@ ALTER TABLE 表名 DROP INDEX 索引名;
 
 1）语法格式
 
-```mysql
+```sql
 create view 视图名 [column_list] as select语句;
 view: 表示视图
 column_list: 可选参数，表示属性清单，指定视图中各个属性的名称，默认情况下，与SELECT语句中查询
@@ -146,7 +146,7 @@ select语句: 向视图提供数据内容
 
 2）创建一张视图
 
-```mysql
+```sql
 #1. 先编写查询语句
 #查询所有商品 和 商品的对应分类信息
 SELECT * FROM products p LEFT JOIN category c ON p.`category_id` = c.`cid`;
@@ -157,7 +157,7 @@ AS SELECT * FROM products p LEFT JOIN category c ON p.`category_id` = c.`cid`;
 
 3）查询视图，就当作一张只读的表操作就可以
 
-```mysql
+```sql
 SELECT * FROM products_category_view;
 ```
 
@@ -165,7 +165,7 @@ SELECT * FROM products_category_view;
 
 需求：查询各个分类下的商品平均价格
 
-```mysql
+```sql
 #通过 多表查询
 SELECT
 cname AS '分类名称',
@@ -211,7 +211,7 @@ MySql默认使用的都是 root 用户，超级管理员，拥有全部的权限
 
 语法格式
 
-```mysql
+```sql
 CREATE USER '用户名'@'主机名' IDENTIFIED BY '密码';
 ```
 
@@ -223,13 +223,13 @@ CREATE USER '用户名'@'主机名' IDENTIFIED BY '密码';
 
 需求：创建admin1用户，只能在localhost这个服务器登录MySQL服务器，密码为123456
 
-```mysql
+```sql
 CREATE USER 'admin1'@'localhost' IDENTIFIED BY '123456';
 ```
 
 创建 admin2 用户可以在任何电脑上登录 mysql 服务器，密码为 123456
 
-```mysql
+```sql
 CREATE USER 'admin2'@'%' IDENTIFIED BY '123456';
 ```
 
@@ -239,7 +239,7 @@ CREATE USER 'admin2'@'%' IDENTIFIED BY '123456';
 
 语法格式
 
-```mysql
+```sql
 GRANT 权限 1, 权限 2... ON 数据库名.表名 TO '用户名'@'主机名';
 ```
 
@@ -251,7 +251,7 @@ GRANT 权限 1, 权限 2... ON 数据库名.表名 TO '用户名'@'主机名';
 
 1) 给 admin1 用户分配对 db4 数据库中 products 表的 操作权限：查询
 
-```mysql
+```sql
 GRANT SELECT ON db4.products TO 'admin1'@'localhost';
 ```
 
@@ -259,7 +259,7 @@ GRANT SELECT ON db4.products TO 'admin1'@'localhost';
 
 语法格式
 
-```mysql
+```sql
 SHOW GRANTS FOR '用户名'@'主机名';
 ```
 
@@ -267,7 +267,7 @@ SHOW GRANTS FOR '用户名'@'主机名';
 
 语法格式
 
-```mysql
+```sql
 DROP USER '用户名'@'主机名';
 ```
 
@@ -275,7 +275,7 @@ DROP USER '用户名'@'主机名';
 
 选择名为 mysql的数据库, 直接查询 user表即可
 
-```mysql
+```sql
 -- 查询用户
 SELECT * FROM USER;
 ```

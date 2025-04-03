@@ -36,7 +36,7 @@
 
 ### 2 .MySQL的启动和关闭
 
-```mysql
+```sql
 1、首先以管理员身份打开dos窗口
 2、启动MySQL
 	net start mysql57
@@ -55,7 +55,7 @@
 
 退出命令
 
-```mysql
+```sql
 exit或者quit
 ```
 
@@ -143,7 +143,7 @@ MySQL就是一个数据库管理系统软件，安装了MySQL的电脑，我们�
 
 代码示例
 
-```mysql
+```sql
 /*
 方式1 直接指定数据库名进行创建
 默认数据库字符集为：latin1
@@ -167,7 +167,7 @@ CREATE DATABASE db1_1 CHARACTER SET utf8;
 
 代码示例
 
-```mysql
+```sql
 -- 切换数据库 从db1 切换到 db1_1
 USE db1_1;
 -- 查看当前正在使用的数据库
@@ -186,7 +186,7 @@ SHOW CREATE DATABASE db1_1;
 | ---------------------------------------------- | ---------------------- |
 | alter database 数据库名 character set 字符集； | 数据库的字符集修改操作 |
 
-```mysql
+```sql
 -- 将数据库db1 的字符集 修改为 utf8
 ALTER DATABASE db1 CHARACTER SET utf8;
 -- 查看当前数据库的基本信息，发现编码已更改
@@ -201,7 +201,7 @@ SHOW CREATE DATABASE db1;
 
 代码示例
 
-```mysql
+```sql
 -- 删除某个数据库
 DROP DATABASE db_1;
 ```
@@ -230,7 +230,7 @@ DROP DATABASE db_1;
 
 比如：保存字符串“abc”
 
-```mysql
+```sql
 x char(10) 占用10个字节
 y varchar(10) 占用3个字节
 ```
@@ -244,7 +244,7 @@ y varchar(10) 占用3个字节
 
 语法格式：
 
-```mysql
+```sql
 CREATE TABLE 表名(
 字段名称1 字段类型（长度），
 字段名称2 字段类型 注意 最后一列不要加逗号
@@ -253,7 +253,7 @@ CREATE TABLE 表名(
 
 - 需求1：创建商品分类表
 
-```mysql
+```sql
 表名：category
 表中字段：
 	分类ID：cid，整型
@@ -263,7 +263,7 @@ CREATE TABLE 表名(
 
 SQL实现
 
-```mysql
+```sql
 -- 切换到数据库 db1
 USE db1;
 -- 创建表
@@ -278,13 +278,13 @@ tdate DATE
 
 - 语法格式：
 
-```mysql
+```sql
 create table 新表名 like 旧表名
 ```
 
 代码示例
 
-```mysql
+```sql
 -- 创建一个表结构与 test1 相同的 test2表
 CREATE TABLE test2 LIKE test1;
 -- 查看表结构
@@ -300,7 +300,7 @@ DESC test2;
 
 代码示例
 
-```mysql
+```sql
 -- 查看当前数据库中的所有表名
 SHOW TABLES;
 -- 显示当前数据表的结构
@@ -318,7 +318,7 @@ SHOW CREATE TABLE category;
 
 代码示例
 
-```mysql
+```sql
 -- 直接删除 test1 表
 DROP TABLE test1;
 -- 先判断 再删除test2表
@@ -331,13 +331,13 @@ DROP TABLE IF EXISTS test2;
 
 - 语法格式
 
-```mysql
+```sql
 rename table 旧表名 to 新表名；
 ```
 
 - 需求：将category表改为category1
 
-```mysql
+```sql
 RENAME TABLE category TO categoty1;
 ```
 
@@ -345,13 +345,13 @@ RENAME TABLE category TO categoty1;
 
 - 语法格式
 
-```mysql
+```sql
 alter table 表名 character set 字符集;
 ```
 
 - 需求：将category表的字符集修改为gbk
 
-```mysql
+```sql
 ALTER TABLE category CHARACTER SET gbk;
 ```
 
@@ -359,13 +359,13 @@ ALTER TABLE category CHARACTER SET gbk;
 
 - 语法格式
 
-```mysql
+```sql
 alter table 表名 add 字段名称 字段类型
 ```
 
 - 需求：为分类表添加一个新的字段为 分类描述 cdesc varchar(20)
 
-```mysql
+```sql
 # 为分类表添加一个新的字段为 分类描述 cdesc varchar(20)
 ALTER TABLE category ADD cdesc VARCHAR(20);
 ```
@@ -374,13 +374,13 @@ ALTER TABLE category ADD cdesc VARCHAR(20);
 
 - 语法格式：
 
-```mysql
+```sql
 alter table 表名 modify 字段名称 字段类型
 ```
 
 - 需求：对分类表的描述字段进行修改，类型为varchar(50)
 
-```mysql
+```sql
 ALTER TABLE category MODIFY cdesc vatchar(50);
 ```
 
@@ -388,13 +388,13 @@ ALTER TABLE category MODIFY cdesc vatchar(50);
 
 - 语法格式
 
-```mysql
+```sql
 alter table 表名 change 旧列名 新列名 类型（长度）;
 ```
 
 - 需求: 对分类表中的 cdesc字段进行更换, 更换为 description varchar(30)
 
-```mysql
+```sql
 ALTER TABLE category CHANGE cdesc description varchar(30);
 ```
 
@@ -402,13 +402,13 @@ ALTER TABLE category CHANGE cdesc description varchar(30);
 
 - 语法格式
 
-```mysql
+```sql
 alter table 表名 drop 列名;
 ```
 
 - 需求：删除分类表中的descrition这列
 
-```mysql
+```sql
 ALTER TABLE category DROP description;
 ```
 
@@ -420,13 +420,13 @@ SQL中的DML用于对表中的数据进行增删改查
 
 - 语法格式
 
-```mysql
+```sql
 insert into 表名 (字段名1，字段名2...) values(字段值1，字段值2...);
 ```
 
 1) 代码准备，创建一个学生表：
 
-```mysql
+```sql
 表名：student
 表中字段：
 学员ID, sid int
@@ -448,20 +448,20 @@ address VARCHAR(40)
 
 - 方式1：插入全部字段，将所有字段名都写出来
 
-```mysql
+```sql
 INSERT INTO student (sid,sname,age,sex,address) VALUES(1,'孙悟空',20,'男','花果
 山');
 ```
 
 - 方式2：插入全部字段，不写字段名
 
-```mysql
+```sql
 INSERT INTO student VALUES(2,'孙悟饭',10,'男','地球');
 ```
 
 - 方式3：插入指定字段的值
 
-```mysql
+```sql
 INSERT INTO category (cname) VALUES('白骨精');
 ```
 
@@ -476,31 +476,31 @@ INSERT INTO category (cname) VALUES('白骨精');
 
 - 语法格式1：不带条件的修改
 
-```mysql
+```sql
 update 表名 set 列名 = 值;
 ```
 
 - 语法格式2：带条件的修改
 
-```mysql
+```sql
 uodate 表名 set 列名 = 值 [where 条件表达式：字段名 = 值];
 ```
 
 1）不带条件的修改，将所有的性别改为女（慎用！！！）
 
-```mysql
+```sql
 UPDATE student SET sex = '女';
 ```
 
 2）带条件的修改，将sid为3的学生，性别改为男
 
-```mysql
+```sql
 UPDATE student SET sex = "男" WHERE sid = 3;
 ```
 
 3）一次修改多个列，将sid为2的学员，年龄改成20，地址改为北京
 
-```mysql
+```sql
 UPDATE student SET age = 20 , address = '北京' WHERE sid = 2;
 ```
 
@@ -508,25 +508,25 @@ UPDATE student SET age = 20 , address = '北京' WHERE sid = 2;
 
 - 语法格式1：删除所有数据
 
-```mysql
+```sql
 delete from 表名;
 ```
 
 - 语法格式2：指定条件删除数据
 
-```mysql
+```sql
 delete from 表名 [where 字段名 = 值];
 ```
 
 1)删除sid为2的数据
 
-```mysql
+```sql
 DELETE FROM student WHERE sid = 2;
 ```
 
 2）删除所有数据
 
-```mysql
+```sql
 DELETE FROM student ;
 ```
 
@@ -535,7 +535,7 @@ DELETE FROM student ;
 > 1. `delete from 表名；`不推荐，有多少条记录旧执行多少次删除操作，效率低
 > 2. `truncate table 表名；`推荐，先删除整张表，然后再重新创建一张一模一样的表，效率高
 
-```mysql
+```sql
 truncate table student;
 ```
 
@@ -543,7 +543,7 @@ truncate table student;
 
 ##### 3.7.1准备数据
 
-```mysql
+```sql
 #创建员工表
 表名 emp
 表中字段：
@@ -581,25 +581,25 @@ INSERT INTO emp VALUES(11,'兔八哥','女', 300,'2010-03-14',财务部);
 - 查询不会对数据库就行修改，知识一种显示数据的方式
 - SELECT语法格式
 
-```mysql
+```sql
 select 列名 from 表名;
 ```
 
 - 需求1：查询emp中的所有数据
 
-```mysql
+```sql
 SELECT * FROM emp; -- 使用 * 表示所有列
 ```
 
 - 需求1：查询emp表中的所有记录，仅显示id和name字段
 
-```mysql
+```sql
 SELECT eid,ename FROM emp;
 ```
 
 - 需求3：将所有员工信息查询处理，并将列名改为中文
 
-```mysql
+```sql
 # 使用 AS关键字,为列起别名
 SELECT
 eid AS '编号',
@@ -613,7 +613,7 @@ FROM emp;
 
 - 需求4：查询一共有几个部门
 
-```mysql
+```sql
 -- 使用distinct 关键字,去掉重复部门信息
 SELECT DISTINCT dept_name FROM emp;
 ```
@@ -621,7 +621,7 @@ SELECT DISTINCT dept_name FROM emp;
 - 需求5：将所有员工的工资+1000元进行显示
   - 运算查询（查询结构参与运算）
 
-```mysql
+```sql
 SELECT ename , salary + 1000 FROM emp;
 ```
 
@@ -631,7 +631,7 @@ SELECT ename , salary + 1000 FROM emp;
 
 - 语法格式
 
-```mysql
+```sql
 select 列名 from 表名 where 条件表达式
 ```
 
@@ -657,7 +657,7 @@ select 列名 from 表名 where 条件表达式
 
 - 需求1：
 
-```mysql
+```sql
 # 查询员工姓名为黄蓉的员工信息
 # 查询薪水价格为5000的员工信息
 # 查询薪水价格不是5000的所有员工信息
@@ -668,7 +668,7 @@ select 列名 from 表名 where 条件表达式
 
 代码实现
 
-```mysql
+```sql
 # 查询员工姓名为黄蓉的员工信息
 SELECT * FROM emp WHERE ename = '黄蓉';
 # 查询薪水价格为5000的员工信息
@@ -690,7 +690,7 @@ SELECT * FROM emp WHERE salary IN(3600,7200,20000);
 
 - 需求2
 
-```mysql
+```sql
 # 查询含有'精'字的所有员工信息
 # 查询以'孙'开头的所有员工信息
 # 查询第二个字为'兔'的所有员工信息
@@ -707,7 +707,7 @@ SELECT * FROM emp WHERE salary IN(3600,7200,20000);
 
 代码实现
 
-```mysql
+```sql
 #查询含有'精'字的所有员工信息
 SELECT * FROM emp WHERE ename LIKE '%精%';
 # 查询以'孙'开头的所有员工信息
